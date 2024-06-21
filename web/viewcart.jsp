@@ -48,6 +48,7 @@
                                                     </td>
                                                     <td>
                                                         <%= key %>
+                                                        <input type="hidden" name="chkOutItem" value="<%= key %>" />
                                                     </td>
                                                     <td>
                                                         <%= items.get(key) %>
