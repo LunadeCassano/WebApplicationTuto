@@ -5,13 +5,20 @@
         <group>
             <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/controller/RemoveItemFromCart.java</file>
             <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/controller/AddToCartServlet.java</file>
-            <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/product/ProductDAO.java</file>
             <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/controller/showBookProductServlet.java</file>
             <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/controller/DispatchServlet.java</file>
+            <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/order/OrderDAO.java</file>
+            <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/cart/CartBean.java</file>
+            <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/registration/RegistrationDAO.java</file>
+            <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/product/ProductDAO.java</file>
+            <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/controller/DeleteAccountServlet.java</file>
+            <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/controller/LoginServlet.java</file>
             <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/product/ProductDTO.java</file>
             <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/registration/RegistrationDTO.java</file>
             <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/web/market.jsp</file>
             <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/web/viewcart.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/controller/CheckOutOrder.java</file>
+            <file>file:/C:/Users/Admin/Desktop/WebApplicationTuto/src/java/datvm/order/OrderDTO.java</file>
         </group>
     </open-files>
 </project-private>

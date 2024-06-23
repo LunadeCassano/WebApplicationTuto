@@ -5,9 +5,14 @@
  */
 package datvm.cart;
 
+import datvm.order.OrderDAO;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
 
 /**
  *
@@ -60,5 +65,20 @@ public class CartBean implements Serializable{
                                     //kiem tra != null se biet duoc ben trong co phan tu hay khong
             }
         }
+    }
+    
+    public int addCheckOutInformation(String custName, String address, String email, String[] item){
+        OrderDAO orderDao = new OrderDAO();
+        try {
+            String orderId = orderDao.createOrder(custName, address, email, item);
+            if(orderId != null){
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CartBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(CartBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 1;
     }
 }

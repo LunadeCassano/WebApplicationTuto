@@ -35,6 +35,9 @@ public class CheckOutOrder extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String custName = request.getParameter("txtCustName");
+        String address = request.getParameter("txtAddress");
+        String email = request.getParameter("txtEmail");
         try {
             //1. cust go to cart place
             HttpSession session = request.getSession(false);
@@ -46,6 +49,7 @@ public class CheckOutOrder extends HttpServlet {
                     Map<String, Integer>items = cart.getItems();
                     if(items != null){
                         String[] checkOutItem = request.getParameterValues("chkOutItem");
+                        cart.addCheckOutInformation(custName, address, email, checkOutItem);
                     }
                 }
                 //4. 
