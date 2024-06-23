@@ -69,7 +69,7 @@ public class OrderDAO implements Serializable{
             //1. connect DB
             con = DBHelper.getConnection();
             //2. create sql String
-            String sql = "INSERT INTO tbl_Order(id, date, customer, address, email) "
+            String sql = "INSERT INTO Orders(id, date, customer, address, email) "
                     + "VALUES (?, ?, ?, ?, ?)";
             //3. Create Statement Obj
             stm = con.prepareStatement(sql);
