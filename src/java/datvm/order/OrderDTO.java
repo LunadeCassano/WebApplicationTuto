@@ -14,7 +14,7 @@ import java.sql.Timestamp;
  */
 public class OrderDTO implements Serializable{
     private String id;
-    private Timestamp date;
+//    private String date;
     private String customer;
     private String address;
     private String email;
@@ -23,9 +23,10 @@ public class OrderDTO implements Serializable{
     public OrderDTO() {
     }
 
-    public OrderDTO(String id, Timestamp date, String customer, String address, String email, float total) {
+//    public OrderDTO(String id, String date, String customer, String address, String email, float total) {
+    public OrderDTO(String id, String customer, String address, String email, float total) {
         this.id = id;
-        this.date = date;
+//        this.date = date;
         this.customer = customer;
         this.address = address;
         this.email = email;
@@ -36,9 +37,9 @@ public class OrderDTO implements Serializable{
         return id;
     }
 
-    public Timestamp getDate() {
-        return date;
-    }
+//    public String getDate() {
+//        return date;
+//    }
 
     public String getCustomer() {
         return customer;
@@ -60,9 +61,9 @@ public class OrderDTO implements Serializable{
         this.id = id;
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
-    }
+//    public void setDate(String date) {
+//        this.date = date;
+//    }
 
     public void setCustomer(String customer) {
         this.customer = customer;

@@ -6,6 +6,9 @@
 package datvm.cart;
 
 import datvm.order.OrderDAO;
+import datvm.order.OrderDTO;
+import datvm.product.ProductDAO;
+import datvm.product.ProductDTO;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -67,18 +70,24 @@ public class CartBean implements Serializable{
         }
     }
     
-    public int addCheckOutInformation(String custName, String address, String email, String[] item){
-        OrderDAO orderDao = new OrderDAO();
-        try {
-            String orderId = orderDao.createOrder(custName, address, email, item);
-            if(orderId != null){
-                
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CartBean.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NamingException ex) {
-            Logger.getLogger(CartBean.class.getName()).log(Level.SEVERE, null, ex);
+    public float totalPayment(CartBean cart) throws SQLException, NamingException{
+        float total = 0;
+        //get each key
+        for (String key : cart.getItems().keySet()) {
+            ProductDTO dto = null;
+            ProductDAO dao = new ProductDAO();
+            //get dto
+            dto = dao.getProduct(key);
+            //total = price * quantity
+            total += dto.getPrice() * cart.getItems().get(key);
         }
+        return total ;
+    }
+    
+    public int addCheckOutInformation(OrderDTO dto, String[] item) throws SQLException, NamingException{
+        OrderDAO orderDao = new OrderDAO();
+        String orderId = orderDao.createOrder(dto);
+        System.out.println("orderId: " + orderId);
         return 1;
     }
 }

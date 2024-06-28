@@ -30,6 +30,7 @@ public class DispatchServlet extends HttpServlet {
     private final String ADD_TO_CART_CONTROLLER = "AddToCartServlet";
     private final String REMOVE_ITEM_FROM_CART_CONTROLLER = "RemoveItemFromCart";
     private final String CHECK_OUT_ORDER_CONTROLLER = "CheckOutOrder";
+    private final String REGISTER_ACCOUNT_CONTROLLER = "RegisterAccountServlet";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -68,12 +69,15 @@ public class DispatchServlet extends HttpServlet {
                 url = REMOVE_ITEM_FROM_CART_CONTROLLER;
             }else if(button.equals("Check out")){
                 url = CHECK_OUT_ORDER_CONTROLLER;
+            }else if(button.equals("Register")){
+                url = REGISTER_ACCOUNT_CONTROLLER;
             }
             
             
             
             
         }finally{
+            System.out.println(url);
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
             

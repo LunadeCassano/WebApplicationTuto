@@ -6,6 +6,7 @@
 package datvm.controller;
 
 import datvm.registration.RegistrationDAO;
+import datvm.registration.RegistrationDTO;
 import datvm.util.DBHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,6 +23,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,7 +32,8 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
 
     // khai bao bien hang
-    private final String SEARCH_PAGE = "search.html";
+//    private final String SEARCH_PAGE = "search.html";
+    private final String SEARCH_PAGE = "search.jsp";
     private final String INVALID_PAGE = "invalid.html";
 
     /**
@@ -58,14 +61,19 @@ public class LoginServlet extends HttpServlet {
             //2.1 New DAO object
             RegistrationDAO dao = new RegistrationDAO();
             //2.2 Call method of DAO object
-            boolean result = dao.checkLogin(name, pass);
+            RegistrationDTO result = dao.checkLogin(name, pass);
             //3. process result 
-            if (result) {
+            if (result != null) {
                 url = SEARCH_PAGE;
+                //open session
+                HttpSession session = request.getSession(); //true vi moi dang nhap nen can tao session moi
+                session.setAttribute("USER", result);
+                session.setAttribute("USERNAME", name);
+                
                 //store cookies
-                Cookie cookie = new Cookie(name, pass);
-                cookie.setMaxAge(60 * 30);
-                response.addCookie(cookie);
+//                Cookie cookie = new Cookie(name, pass);
+//                cookie.setMaxAge(60 * 30);
+//                response.addCookie(cookie);
             }
             // end user click 
 

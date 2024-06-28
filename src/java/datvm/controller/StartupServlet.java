@@ -6,6 +6,7 @@
 package datvm.controller;
 
 import datvm.registration.RegistrationDAO;
+import datvm.registration.RegistrationDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -51,10 +52,10 @@ public class StartupServlet extends HttpServlet {
                     //4.1 New DAO obj
                     RegistrationDAO dao = new RegistrationDAO();
                     //4.2 Call method
-                    boolean result = dao.checkLogin(username, password);
+                    RegistrationDTO result = dao.checkLogin(username, password);
                     
                 //5. Process
-                if(result){
+                if(result != null){
                     url = SEARCH_PAGE;
                 }
             }

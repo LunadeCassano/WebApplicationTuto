@@ -70,13 +70,14 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            
+                        </form> 
+                        <form action="DispatchServlet" method="POST">
                             <h1>Customer Information</h1>
                             Customer Name* <input type="text" name="txtCustName" value="" /></br>
                             Address* <textarea name="txtAddress" rows="2" cols="20"></textarea></br>
                             Email <input type="text" name="txtEmail" value="" /></br>
                             <input type="submit" value="Check out" name="btAction" />
-                        </form>    
+                        </form>
                         <%
                         return;
                     }
