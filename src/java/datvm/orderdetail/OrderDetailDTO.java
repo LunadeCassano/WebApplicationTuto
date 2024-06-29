@@ -12,5 +12,59 @@ import java.io.Serializable;
  * @author Admin
  */
 public class OrderDetailDTO implements Serializable {
+    private int productId;
+    private float unitPrice;
+    private int quantity;
+    private String orderId;
+    private float total;
+
+    public OrderDetailDTO(int productId, float unitPrice, int quantity, String orderId, float total) {
+        this.productId = productId;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.orderId = orderId;
+        this.total = total;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public float getUnitPrice() {
+        return unitPrice;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public void setUnitPrice(float unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+    
     
 }
