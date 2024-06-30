@@ -16,6 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <a href="login.html"><- Go back to Login</a>
         <h1>Demo shopping cart</h1>
         <form action="DispatchServlet">
             Choose Book <select name = "ddlBook">
