@@ -7,6 +7,7 @@
 <%@page import="datvm.product.ProductDTO"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,6 +17,22 @@
     </head>
     <body>
         <h1>Demo shopping cart</h1>
+        <form action="DispatchServlet">
+            Choose Book <select name = "ddlBook">
+                <c:set var="products_list" value="${requestScope.SHOW_PRODUCT}"/>
+                <c:if test="${not empty products_list}">
+                    <c:forEach var="product" items="${products_list}">
+                        <option>
+                            ${product.name}
+                        </option>
+                    </c:forEach>
+                </c:if>
+            </select><br/>
+            Quantity <input type="number" name="txtQuantity" min = "1" value="" /><br/>
+            <input type="submit" value="Add Book to Your Cart" name="btAction" />
+            <input type="submit" value="View Your Cart" name="btAction" /> 
+        </form>
+        <%--<h1>Demo shopping cart</h1>
         <form action="DispatchServlet">
             Choose Book <select name = "ddlBook">
                 <% 
@@ -34,6 +51,6 @@
             Quantity <input type="number" name="txtQuantity" min = "1" value="" /><br/>
             <input type="submit" value="Add Book to Your Cart" name="btAction" />
             <input type="submit" value="View Your Cart" name="btAction" /> 
-        </form>
+        </form>--%>
     </body>
 </html>

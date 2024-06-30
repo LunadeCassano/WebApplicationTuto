@@ -87,7 +87,13 @@ public class CartBean implements Serializable{
     public int addCheckOutInformation(OrderDTO dto, String[] item) throws SQLException, NamingException{
         OrderDAO orderDao = new OrderDAO();
         String orderId = orderDao.createOrder(dto);
-        System.out.println("orderId: " + orderId);
+        if (orderId != null){
+            ProductDAO pdao = new ProductDAO();
+            for (String itemName : item){
+                ProductDTO pdto = pdao.getProduct(itemName);
+                
+            }
+        }
         return 1;
     }
 }

@@ -7,32 +7,20 @@ package datvm.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "DispatchServlet", urlPatterns = {"/DispatchServlet"})
-public class DispatchServlet extends HttpServlet {
+@WebServlet(name = "LogOutServlet", urlPatterns = {"/LogOutServlet"})
+public class LogOutServlet extends HttpServlet {
     private final String LOGIN_PAGE = "login.html";
-    private final String VIEW_CART_PAGE = "viewcart.jsp";
-    private final String LOGIN_CONTROLLER ="LoginServlet";
-    private final String SEARCH_LASTNAME_CONTROLLER = "SearchLastNameServlet";
-    private final String DELETE_ACCOUNT_CONTROLLER =  "DeleteAccountServlet";
-    private final String UPDATE_ACCOUNT_CONTROLLER = "UpdateAccountServlet";
-    private final String STARTUP_CONTROLLER = "StartupServlet";
-    private final String ADD_TO_CART_CONTROLLER = "AddToCartServlet";
-    private final String REMOVE_ITEM_FROM_CART_CONTROLLER = "RemoveItemFromCart";
-    private final String CHECK_OUT_ORDER_CONTROLLER = "CheckOutOrder";
-    private final String REGISTER_ACCOUNT_CONTROLLER = "RegisterAccountServlet";
-    private final String LOG_OUT_CONTROLLER = "LogOutServlet";
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,45 +33,17 @@ public class DispatchServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-            // which button did user click 
-            String button = request.getParameter("btAction");
-            String url = LOGIN_PAGE;
+        String url = LOGIN_PAGE;
         try {
-            if (button == null){
-                //check cookies
-                url = STARTUP_CONTROLLER;
-                
-            }else if (button.equals("Login") ){
-                url = LOGIN_CONTROLLER;
-            }else if (button.equals("Search")){
-                url = SEARCH_LASTNAME_CONTROLLER;
-            }else if (button.equals("Delete")){ //user clicked Delete Link
-                url = DELETE_ACCOUNT_CONTROLLER;
-            }else if (button.equals("Update")){
-                url = UPDATE_ACCOUNT_CONTROLLER;
-            }else if(button.equals("Add Book to Your Cart")){
-                url = ADD_TO_CART_CONTROLLER;
-            }else if(button.equals("View Your Cart")){
-                url = VIEW_CART_PAGE;
-            }else if(button.equals("Remove")){
-                url = REMOVE_ITEM_FROM_CART_CONTROLLER;
-            }else if(button.equals("Check out")){
-                url = CHECK_OUT_ORDER_CONTROLLER;
-            }else if(button.equals("Register")){
-                url = REGISTER_ACCOUNT_CONTROLLER;
-            }else if(button.equals("Log out")){
-                url = LOG_OUT_CONTROLLER;
+            //1. get session
+            HttpSession session = request.getSession(false);
+            if (session != null){
+                //2. invalidate session
+                session.invalidate();
             }
             
-            
-            
-            
         }finally{
-            System.out.println(url);
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
-            
+            response.sendRedirect(url);
         }
     }
 

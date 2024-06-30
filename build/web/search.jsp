@@ -18,7 +18,11 @@
     <body>
         <font color ="red">
             Welcome, ${sessionScope.USER.fullname}
-        </font>
+        </font><br/>
+        <form action="DispatchServlet">
+            <input type="submit" value="Log out" name="btAction" />
+        </form>
+            
         <h1>SEARCH PAGE</h1>
         <form action="DispatchServlet">
             Search Value <input type="text" name="txtSearch" value="${param.txtSearch}" />

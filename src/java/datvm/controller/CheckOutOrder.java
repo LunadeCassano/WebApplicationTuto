@@ -45,7 +45,7 @@ public class CheckOutOrder extends HttpServlet {
         String custName = request.getParameter("txtCustName");
         String address = request.getParameter("txtAddress");
         String email = request.getParameter("txtEmail");
-        float total =0;
+        float total = 0;
         
         try {
             //1. cust go to cart place
@@ -61,16 +61,16 @@ public class CheckOutOrder extends HttpServlet {
                         String[] checkOutItem = request.getParameterValues("chkOutItem");
                         OrderDTO dto = new OrderDTO("", custName, address, email, total);
                         cart.addCheckOutInformation(dto, checkOutItem);
-
+                        
                         
                     }
                 }
                 //4. 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CheckOutOrder.class.getName()).log(Level.SEVERE, null, ex);
+            log("CheckOutOrder_SQL: " + ex.getMessage());
         } catch (NamingException ex) {
-            Logger.getLogger(CheckOutOrder.class.getName()).log(Level.SEVERE, null, ex);
+            log("CheckOutOrder_Naming: " + ex.getMessage());
         }finally{
 //            response.sendRedirect("login.html");
         }
