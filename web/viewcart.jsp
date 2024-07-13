@@ -81,7 +81,7 @@
         </c:if>
         
         <%--<h1>Your cart includes</h1>
-        <% 
+        <% d
             //1. Cust goes to cart place
             if (session != null){
                 //2. Cust takes cart
@@ -149,13 +149,13 @@
                     }
                 }  
             }
-        %>--%>
+        %>
         
-<!--        <h2>
+       <h2>
             <font color = "red">
                 No cart is existed!!!
             </font>
         </h2>
-        <a href="showBookProductServlet">Add books to your Cart</a>-->
+        <a href="showBookProductServlet">Add books to your Cart</a>--%>
     </body>
 </html>

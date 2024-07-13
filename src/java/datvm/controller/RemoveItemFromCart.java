@@ -55,6 +55,9 @@ public class RemoveItemFromCart extends HttpServlet {
                             session.setAttribute("CART", cart);
                         }
                     }
+                    if (cart.getItems() == null){
+                        session.removeAttribute("CART");
+                    }
                 }
             }       
         }finally{

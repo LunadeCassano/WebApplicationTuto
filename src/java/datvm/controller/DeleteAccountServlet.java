@@ -56,9 +56,9 @@ public class DeleteAccountServlet extends HttpServlet {
                 
             }
         }catch(SQLException ex){
-            ex.printStackTrace();
+            log("DeleteAccount_SQL: " + ex.getMessage());
         }catch(NamingException ex){
-            ex.printStackTrace();
+            log("DeleteAccount_Naming: " + ex.getMessage());
         }
         finally{
             response.sendRedirect(url);

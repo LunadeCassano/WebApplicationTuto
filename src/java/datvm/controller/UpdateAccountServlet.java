@@ -63,9 +63,9 @@ public class UpdateAccountServlet extends HttpServlet {
                 }
             
         }catch(SQLException ex){
-            ex.printStackTrace();
+            log("UpdateAccountServlet_SQL: " + ex.getMessage());
         }catch(NamingException ex){
-            ex.printStackTrace();
+            log("UpdateAccountServlet_Naming: " + ex.getMessage());
         }
         finally{
             RequestDispatcher rd = request.getRequestDispatcher(url);

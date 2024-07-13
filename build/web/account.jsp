@@ -43,7 +43,8 @@
                 </font><br/>
             </c:if>
             <input type="submit" value="Register" name="btAction" />
-            <input type="submit" value="Reset" name="btAction" />
+            <input type="reset" value="Reset" />
+            <input type="submit" value="Already have account" name="btAction" />
         </form>
     </body>
 </html>

@@ -50,9 +50,9 @@ public class showBookProductServlet extends HttpServlet {
                 request.setAttribute("SHOW_PRODUCT", result);
                 url = SHOPPING_PAGE;
         }catch(SQLException ex){
-            ex.printStackTrace();
+            log("ShowBookProductServlet_SQL: " + ex.getMessage());
         }catch(NamingException ex){
-            ex.printStackTrace();
+            log("ShowBookProductServlet_Naming: " + ex.getMessage());
         }
         finally{
             RequestDispatcher rd = request.getRequestDispatcher(url);

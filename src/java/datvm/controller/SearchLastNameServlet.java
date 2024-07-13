@@ -62,9 +62,9 @@ public class SearchLastNameServlet extends HttpServlet {
                 url = RESULT_PAGE;
             }//user input valid value
         } catch (SQLException ex) {
-             Logger.getLogger(SearchLastNameServlet.class.getName()).log(Level.SEVERE, null, ex);
+             log("SearchLastName_SQL: " + ex.getMessage());
          } catch (NamingException ex) {
-             Logger.getLogger(SearchLastNameServlet.class.getName()).log(Level.SEVERE, null, ex);
+             log("SearchLastName_Naming: " + ex.getMessage());
          }finally{
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);

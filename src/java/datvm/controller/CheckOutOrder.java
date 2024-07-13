@@ -8,14 +8,19 @@ package datvm.controller;
 import datvm.cart.CartBean;
 import datvm.order.OrderDAO;
 import datvm.order.OrderDTO;
+import datvm.orderdetail.OrderDetailDTO;
+import datvm.product.ProductDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +34,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "CheckOutOrder", urlPatterns = {"/CheckOutOrder"})
 public class CheckOutOrder extends HttpServlet {
-
+    private final String CONFIRM_CHECKOUT_CONTROLLER = "bill.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,7 +51,7 @@ public class CheckOutOrder extends HttpServlet {
         String address = request.getParameter("txtAddress");
         String email = request.getParameter("txtEmail");
         float total = 0;
-        
+        String url = "invalid.html";
         try {
             //1. cust go to cart place
             HttpSession session = request.getSession(false);
@@ -58,11 +63,16 @@ public class CheckOutOrder extends HttpServlet {
                     Map<String, Integer>items = cart.getItems();
                     total = cart.totalPayment(cart);
                     if(items != null){
-                        String[] checkOutItem = request.getParameterValues("chkOutItem");
                         OrderDTO dto = new OrderDTO("", custName, address, email, total);
-                        cart.addCheckOutInformation(dto, checkOutItem);
-                        
-                        
+                        List<OrderDetailDTO> list = cart.addCheckOutInformation(dto, items);
+                        if (list == null){
+                            list = new ArrayList<>();
+                        }
+                        session.setAttribute("CUST", dto);
+                        session.setAttribute("CHECK_OUT_ITEM", list);
+                        session.setAttribute("TOTAL_PAYMENT", total);
+                        session.removeAttribute("CART");
+                        url = CONFIRM_CHECKOUT_CONTROLLER;
                     }
                 }
                 //4. 
@@ -73,6 +83,8 @@ public class CheckOutOrder extends HttpServlet {
             log("CheckOutOrder_Naming: " + ex.getMessage());
         }finally{
 //            response.sendRedirect("login.html");
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 

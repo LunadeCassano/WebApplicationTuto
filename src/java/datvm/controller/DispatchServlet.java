@@ -74,13 +74,10 @@ public class DispatchServlet extends HttpServlet {
                 url = REGISTER_ACCOUNT_CONTROLLER;
             }else if(button.equals("Log out")){
                 url = LOG_OUT_CONTROLLER;
+            }else if(button.equals("Already have account")){
+                url = LOGIN_PAGE;
             }
-            
-            
-            
-            
         }finally{
-            System.out.println(url);
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
             

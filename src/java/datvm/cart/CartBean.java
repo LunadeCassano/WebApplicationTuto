@@ -7,11 +7,15 @@ package datvm.cart;
 
 import datvm.order.OrderDAO;
 import datvm.order.OrderDTO;
+import datvm.orderdetail.OrderDetailDAO;
+import datvm.orderdetail.OrderDetailDTO;
 import datvm.product.ProductDAO;
 import datvm.product.ProductDTO;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,6 +74,20 @@ public class CartBean implements Serializable{
         }
     }
     
+    public int getQuantityByName(String name){
+        if (name == null || name.trim().isEmpty()){
+            return 0;
+        }
+        if (this.items == null){
+            return 0;
+        }
+        int quantity = 0;
+        if(this.items.containsKey(name)){
+            quantity = this.items.get(name);
+        }
+        return quantity;
+    }
+    
     public float totalPayment(CartBean cart) throws SQLException, NamingException{
         float total = 0;
         //get each key
@@ -84,16 +102,28 @@ public class CartBean implements Serializable{
         return total ;
     }
     
-    public int addCheckOutInformation(OrderDTO dto, String[] item) throws SQLException, NamingException{
+    public List<OrderDetailDTO> addCheckOutInformation(OrderDTO dto, Map<String, Integer> item) throws SQLException, NamingException{
+        List<OrderDetailDTO> list = new ArrayList<>();
         OrderDAO orderDao = new OrderDAO();
         String orderId = orderDao.createOrder(dto);
         if (orderId != null){
             ProductDAO pdao = new ProductDAO();
-            for (String itemName : item){
-                ProductDTO pdto = pdao.getProduct(itemName);
-                
+            ProductDTO pdto = new ProductDTO();
+            OrderDetailDAO odDao = new OrderDetailDAO();
+            int quantity;
+            float price;
+            float total;
+            for (String itemName : item.keySet()){
+                pdto = pdao.getProduct(itemName);
+                quantity = getQuantityByName(itemName);
+                price = pdto.getPrice();
+                total = quantity * price;
+                OrderDetailDTO odDto = new OrderDetailDTO(pdto.getSku(), itemName, pdto.getPrice(), quantity, orderId, total);
+                if(odDao.addOrderDetail(odDto)){
+                    list.add(odDto);
+                }
             }
         }
-        return 1;
+        return list;
     }
 }

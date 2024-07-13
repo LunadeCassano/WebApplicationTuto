@@ -13,13 +13,15 @@ import java.io.Serializable;
  */
 public class OrderDetailDTO implements Serializable {
     private int productId;
+    private String productName;
     private float unitPrice;
     private int quantity;
     private String orderId;
     private float total;
 
-    public OrderDetailDTO(int productId, float unitPrice, int quantity, String orderId, float total) {
+    public OrderDetailDTO(int productId, String productName, float unitPrice, int quantity, String orderId, float total) {
         this.productId = productId;
+        this.productName = productName;
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.orderId = orderId;
@@ -28,6 +30,10 @@ public class OrderDetailDTO implements Serializable {
 
     public int getProductId() {
         return productId;
+    }
+    
+    public String getProductName() {
+        return productName;
     }
 
     public float getUnitPrice() {
@@ -50,6 +56,10 @@ public class OrderDetailDTO implements Serializable {
         this.productId = productId;
     }
 
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+    
     public void setUnitPrice(float unitPrice) {
         this.unitPrice = unitPrice;
     }

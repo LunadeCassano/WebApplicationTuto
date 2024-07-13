@@ -61,9 +61,9 @@ public class StartupServlet extends HttpServlet {
             }
             
         }catch(SQLException ex){
-            ex.printStackTrace();
+            log("StartupServlet_SQL: " + ex.getMessage());
         }catch(NamingException ex){
-            ex.printStackTrace();
+            log("StartupServlet_Naming: " + ex.getMessage());
         }
         finally{
             response.sendRedirect(url); //dung foward cung duoc

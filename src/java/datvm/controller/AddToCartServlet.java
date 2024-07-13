@@ -51,7 +51,7 @@ public class AddToCartServlet extends HttpServlet {
             session.setAttribute("CART", cart);
             
         }catch(NumberFormatException ex){
-            System.out.println("Invalid quantity input");
+            log("Invalid quantity input " + ex.getMessage());
         }
         finally{
             //4. Cust go to shopping again

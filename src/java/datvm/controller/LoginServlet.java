@@ -78,9 +78,9 @@ public class LoginServlet extends HttpServlet {
             // end user click 
 
         } catch (NamingException ex) {
-            ex.printStackTrace();
+            log("LoginServlet_Naming: " + ex.getMessage());
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            log("LoginServlet_SQL: " + ex.getMessage());
         } finally {
 //            response.sendRedirect(url);
             RequestDispatcher rd = request.getRequestDispatcher(url);
